@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        #top{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        #top *{
+            margin: 0;
+        }
+        #pfp{
+            border: 1px solid white;
+            width: 4vh;
+            height: 4vh;
+        }
+
+        #content{
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        #blog{
+            flex: 1 1 260px;
+            height: fit-content;
+            min-height: 260px;
+            max-height: 85vh;
+            
+        }
+        #services{
+            flex: 3 1 520px;
+            min-width: 280px;
+            max-height: 85vh;
+            height: fit-content;
+        }
+        .grid{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .grid a{
+            margin-bottom: 8px;
+            margin-right: 8px;
+        }
+        #services h1, #settings-header h1{
+            margin: 0;
+        }
+        #post *{
+            margin: 0;
+            margin-left: 1vw;
+        }
+        #post p{
+            margin-bottom: 1vh;
+        }
+        #post h3{
+            margin-top: 1vh;
+        }
+        #settings-area{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        #webview, #webview iframe{
+            width: 100%;
+        }
+        #webview{
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 300ms ease, opacity 200ms ease;
+        }
+        #webview iframe{
+            height: auto;
+            border: none;
+            display: block;
+        }
+        #settings-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        #services h1{
+            margin-bottom: 0;
+        }
+        
+        .icon{
+            width: clamp(64px, 8vw, 120px);
+            height: clamp(64px, 8vw, 120px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .icon img{
+            width: clamp(40px, 5vw, 72px);
+            height: clamp(40px, 5vw, 72px);
+            object-fit: contain;
+        }
+        .icon p{
+            margin-bottom: 4px;
+            font-size: clamp(12px, 1.2vw, 14px);
+            line-height: 1.2;
+        }
+
+        #posts{
+            overflow-y: scroll;
+            width: 100%;
+            height: fit-content;
+            border: black solid 2px;
+            border-radius: 32px;
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+
+        #account{
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .hidden{
+            display: none;
+        }
+        #services h1, #settings-header h1{
+            margin-top: 0;
+            margin-left: 0;
+            margin-bottom: 0;
+        }
+        #settings-header{
+            margin-top: 8px;
+        }
+        #blog h2{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        #summary{
+            margin-top: 0;
+        }
+        #ad{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 234px; 
+            height: 60px; 
+            background-color: black;
+        }
+        #ad *{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="top" class="glass panel">
+        <h2 style="width: fit-content;">λ</h2>
+        <h2 id="tag" style="width: fit-content;">Your digital home</h2>
+        <div id="account">
+            <a href="/Core/account" id="account">
+                <h2>{{ user.username }}:{{ user.user_id }}</h2>
+                <img src="{{ user.pfp }}" id="pfp">
+            </a>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+    <br>
+    <div id="content">
+        <div id="blog" class="water panel glow">
+            <h2>Blog</h2>
+            <div id="posts">
+                {% for blog in blog %}
+                <a href="{{ blog.href }}">
+                    <div id="post" class="liminal-blue glow">
+                        <h3>{{ blog.date }} - {{ blog.title }}</h3>
+                        <p id="summary">{{ blog.summary}}</p>
+                    </div>
+                </a>
+                {% endfor %}
+                </div>
+                <div id="ad">
+                    <a href="https://ko-fi.com/midnightdodger0">
+                        <h2>Interested?</h2>
+                        <p>Consider donating if you can</p>
+                    </a>
+                </div>
+        </div>
+        <div id="services" class="glass panel">
+            <h1>Services</h1>
+
+            <div class="grid">
+                {% for app in apps %} 
+                    <a href="{{ app.href }}" class="icon_text">
+                        <div class="icon glass glow" data-desc="{{ app.desc }}">
+                            <img src="{{ app.img }}">
+                            <p>{{ app.name }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div id="settings-header">
+                <h1>Settings</h1>
+            </div>
+            <div id="settings-area">
+                <div class="grid">
+                    {% for setting in settings %} 
+                        <a href="{{ setting.href }}" class="icon_text" target="settings-frame">
+                            <div class="icon glass glow" data-desc="{{ setting.desc or setting.name }}">
+                                <img src="{{ setting.img }}">
+                                <p>{{ setting.name }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div id="webview" class="hidden">
+                    <iframe id="settings-iframe" name="settings-frame" title="Settings panel"></iframe>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        const tag = document.getElementById("tag");
+        const defaultTag = "Your digital home";
+        const icons = document.querySelectorAll(".icon[data-desc]");
+
+        icons.forEach((icon) => {
+            icon.addEventListener("mouseenter", () => {
+                tag.textContent = icon.dataset.desc || defaultTag;
+            });
+            icon.addEventListener("mouseleave", () => {
+                tag.textContent = defaultTag;
+            });
+        });
+
+        const settingsLinks = document.querySelectorAll("#settings-area .grid a");
+        const webview = document.getElementById("webview");
+        const settingsFrame = document.getElementById("settings-iframe");
+
+        const resizeSettingsFrame = () => {
+            if (!settingsFrame.contentWindow) {
+                return;
+            }
+            const doc = settingsFrame.contentWindow.document;
+            const height = Math.max(
+                doc.body.scrollHeight,
+                doc.documentElement.scrollHeight
+            );
+            settingsFrame.style.height = `${height}px`;
+            webview.style.maxHeight = `${height}px`;
+            webview.style.opacity = "1";
+        };
+
+        settingsLinks.forEach((link) => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const href = link.getAttribute("href");
+                if (!href) {
+                    return;
+                }
+
+                const reopen = () => {
+                    webview.classList.remove("hidden");
+                    settingsFrame.style.height = "0px";
+                    webview.style.maxHeight = "0px";
+                    webview.style.opacity = "0";
+                    settingsFrame.src = href;
+                };
+
+                if (!webview.classList.contains("hidden")) {
+                    webview.style.maxHeight = "0px";
+                    webview.style.opacity = "0";
+                    webview.addEventListener(
+                        "transitionend",
+                        () => {
+                            webview.classList.add("hidden");
+                            reopen();
+                        },
+                        { once: true }
+                    );
+                    return;
+                }
+
+                reopen();
+            });
+        });
+
+
+        settingsFrame.addEventListener("load", () => {
+            requestAnimationFrame(resizeSettingsFrame);
+        });
+    </script>
+    <script src="{{ url_for('static', filename='PowSaver.js') }}"></script>
+</body>
+</html>

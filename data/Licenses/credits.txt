@@ -1,0 +1,12 @@
+Icons by Pictogrammers:
+    Apache 2.0 license text
+    keep the original copyright notice
+
+bcrypt:
+    Apache 2.0 license text
+
+Flask:
+    BSD-3-Clause license text
+
+Lambdautils, Lambda Core, Leap, etc:
+    Mozilla Public License 2.0 text

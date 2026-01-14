@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        body{
+            background-color: black;
+        }
+        .panel{
+            width: 320px;
+            height: fit-content;
+            margin: auto;
+        }
+        .panel *{
+            margin: auto;
+        }
+        .flex{
+            display: flex;
+            flex-direction: row;
+        }
+        #top{
+            border-radius: 32px 32px 0px 0px;
+        }
+        #bottom{
+            border-radius: 0px 0px 32px 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel amber" id="top">
+        <h2>X-X</h2> 
+        <p>{{reason}}</p>
+        <p>{{code}}</p>
+    </div>
+    <div class="panel glass flex glow" id="bottom">
+        <button class="glass">Support</button>
+        <button onclick="window.history.back" class="glass">Go back</button>
+        <button class="glass">Go home</button>
+    </div>
+</body>
+</html>

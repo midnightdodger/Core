@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrame</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        html, body{
+            display: flex;
+            flex-wrap: wrap;
+            background-color: transparent;
+            height: fit-content;
+        }
+        .panel input{
+            width: 256px;
+        }
+        .setting{
+            width: fit-content;
+            margin: 8px;
+        }
+        #settings-close{
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button id="settings-close" class="glass">Close</button>
+    <div class="water panel setting">
+        <label for="username">Username</label>
+        <input type="text" placeholder="{{username}}" id="username" class="glass glow" name="username">
+    </div>
+    <form class="water panel setting" method="post" enctype="multipart/form-data" action="/settings/identity">
+        <label for="pfp">Profile picture</label>
+        <p id="pfp-current" data-current="{{ pfp_filename }}">Current pfp: {{ pfp_filename }}</p>
+        <input type="file" class="glass glow" name="pfp" accept="image/*">
+        <button type="submit" class="glass">Upload</button>
+    </form>
+    <form class="water panel setting" onsubmit="alert('This has not been implemented yet'); return false;">
+        <label for="phone">Phone number</label>
+        <input type="tel" class="glass glow" name="phone" placeholder="Unavalible">
+        <button type="submit" class="glass">Link</button>
+    </form>
+    <form class="water panel setting" method="post" action="/settings/identity">
+        <label for="email">Email</label>
+        <input type="email" class="glass glow" name="email" value="{{ email }}" placeholder="{{ email }}" readonly>
+        <button type="submit" class="glass" name="remove_email" value="1">Remove</button>
+    </form>
+    <script src="{{ url_for('static', filename='settings.js') }}"></script>
+    <script>
+        const pfpInput = document.querySelector("input[name='pfp']");
+        const pfpCurrent = document.getElementById("pfp-current");
+        const defaultPfpText = pfpCurrent?.dataset?.current || "default.png";
+
+        if (pfpInput && pfpCurrent) {
+            pfpInput.addEventListener("change", () => {
+                const file = pfpInput.files && pfpInput.files[0];
+                pfpCurrent.textContent = `Current pfp: ${file ? file.name : defaultPfpText}`;
+            });
+        }
+    </script>
+</body>
+</html>

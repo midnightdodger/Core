@@ -1,0 +1,20 @@
+[
+  {
+    "license": "Apache",
+    "source": "https://www.apache.org/licenses/LICENSE-2.0",
+    "services": ["",""],
+    "contents": ""
+  },
+  {
+    "license": "Mozilla",
+    "source": "https://www.apache.org/licenses/LICENSE-2.0",
+    "services": ["",""],
+    "contents": ""
+  },
+  {
+    "license": "BSD 3-Clause",
+    "source": "https://www.apache.org/licenses/LICENSE-2.0",
+    "services": ["",""],
+    "contents": ""
+  }
+]

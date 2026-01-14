@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Core",
+    "img": "static/apps/core.svg",
+    "href": "https://www.lambdacore.net",
+    "desc": "Your digital home"
+  },
+  {
+    "name": "Leap",
+    "img": "static/apps/leap.png",
+    "href": "https://midnightdodger.github.io/Leap/",
+    "desc": "An effecient and ecologically friendly search engine"
+  },
+  {
+    "name": "Nova",
+    "img": "",
+    "href": "",
+    "desc": "Your personal media vault and market"
+  },
+  {
+    "name": "Nook",
+    "img": "",
+    "href": "",
+    "desc": "Learn anything you can dream of"
+  },
+  {
+    "name": "Live",
+    "img": "",
+    "href": "",
+    "desc": "Show off your style"
+  },
+  {
+    "name": "Dock",
+    "img": "",
+    "href": "",
+    "desc": "Work effeciently"
+  },
+  {
+    "name": "Games",
+    "img": "",
+    "href": "",
+    "desc": "Be a winner"
+  },
+  {
+    "name": "Bloom",
+    "img": "static/apps/bloom.jpg",
+    "href": "",
+    "desc": "Trust us with your communications"
+  }
+]

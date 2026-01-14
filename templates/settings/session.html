@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        html, body{
+            background-color: transparent;
+            height: fit-content;
+        }
+        #prompt{
+            width: 700px;
+            height: fit-content;
+            margin: auto;
+        }
+        #prompt *{
+            margin-bottom: 0;
+        }
+        #prompt hr{
+            width: 100%;
+            margin-bottom: 0;
+        }
+        .terminal{
+            height: 32px;
+            display: flex;
+        }
+        #prompt h2{
+            margin: 0;
+        }
+        #settings-close{
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button id="settings-close" class="glass">Close</button>
+    {% if signed_in and sessions %}
+        <div class="glass">
+            {% for session in sessions %}
+                <div class="terminal">
+                    <p>{{ session.ip }} @ {{ session.time }} on a {{ session.arch }} {{ session.device }} using {{ session.os }} with {{ session.browser }}</p>
+                    {% if session.current %}
+                        <form method="post" action="/logout" style="margin-left: auto;" data-refresh-parent>
+                            <button type="submit" class="glass">Sign out</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='settings.js') }}"></script>
+</body>
+</html>

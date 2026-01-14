@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+        }
+        h3 {
+            color: white;
+        }
+        .panel {
+            margin: auto;
+            height: fit-content;
+            width: 500px;
+        }
+        #title * {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        #title {
+            width: 100%;
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            border-radius: 32px;
+        }
+        #buttons {
+            width: 50%;
+            margin-right: auto;
+        }
+        #buttons button {
+            width: 49%;
+            margin: 0;
+        }
+        #twofa_bar input {
+            width: 32px;
+            
+        }
+        #twofa_bar, #glyph_bar{
+            width: 50%;
+        }
+        #twofa_bar, #glyph_bar{
+            width: fit-content;
+        }
+        
+        .na {
+            display: none;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        form *{
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass panel">
+        <div class="water" id="title">
+            <h3>Signing into</h3>
+            <h1>{{ service }}</h1>
+        </div>
+        <form action="{{url_for('check')}}" method="POST">
+            <label for="username">Username</label>
+            <input class="glass glow" id="username" name="username">
+            <label for="password" id="password">Password</label>
+            <input class="glass glow" name="password" type="password">
+            <div style="display: flex;">
+                <div id="buttons">
+                    <button type="button" class="enabled" id="fa">2FA</button>
+                    <button type="button" class="disabled glow" id="glyph">Glyth</button>
+                </div>
+                <div id="twofa_bar">
+                    <input class="glass" maxlength="1">
+                    <input class="glass" maxlength="1">
+                    <input class="glass" maxlength="1">
+                    <input class="glass" maxlength="1">
+                    <input class="glass" maxlength="1">
+                    <input class="glass" maxlength="1">
+                </div>
+                    <div id="glyph_bar" class="na">
+                        <input type="file" id="file" hidden>
+                        <Button type="button" id="fileBtn" class="glass glow">Upload</Button>
+                    </div>
+                </div>
+            <button type="check" class="glass glow">Enter</button>
+        </form>
+        </div>
+    <script>
+        const fileInput = document.getElementById("file");
+        const fileBtn = document.getElementById("fileBtn");
+        const fileName = document.getElementById("fileName");
+
+        fileBtn.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            }
+        });
+    </script>
+    <script>
+        const glyph = document.getElementById("glyph");
+        const fa = document.getElementById("fa");
+        const twofa_bar = document.getElementById("twofa_bar");
+        const glyph_bar = document.getElementById("glyph_bar");
+
+        glyph.addEventListener("click", enabled_glyph);
+        fa.addEventListener("click", enabled_2fa);
+
+        function enabled_glyph() {
+            glyph.classList.add("enabled");
+            fa.classList.remove("enabled");
+
+            glyph.classList.remove("disabled");
+            fa.classList.add("disabled");
+
+            fa.classList.add("glow");
+            glyph.classList.remove("glow");
+
+            twofa_bar.classList.add("na");
+            glyph_bar.classList.remove("na");
+        }
+
+        function enabled_2fa() {
+            glyph.classList.add("disabled");
+            fa.classList.remove("disabled");
+
+            glyph.classList.remove("enabled");
+            fa.classList.add("enabled");
+
+            fa.classList.remove("glow");
+            glyph.classList.add("glow");
+
+            twofa_bar.classList.remove("na");
+            glyph_bar.classList.add("na");
+        }
+    </script>
+</body>
+</html>

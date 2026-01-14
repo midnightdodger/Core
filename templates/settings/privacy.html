@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        html, body{
+            background-color: transparent;
+            height: fit-content;
+        }
+        #prompt{
+            width: 700px;
+            height: fit-content;
+            margin: auto;
+        }
+        #prompt *{
+            margin-bottom: 0;
+        }
+        #prompt hr{
+            width: 100%;
+            margin-bottom: 0;
+        }
+        #prompt h2{
+            margin: 0;
+        }
+        #settings-close{
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button id="settings-close" class="glass">Close</button>
+    <div id="prompt" class="panel amber">
+        <h1>This is still under development</h1>
+        <hr>
+        <h3>Expected release date: XX/02/2026</h3>
+        <hr>
+        <h2>Wanna know where we're at? <a href="https://github.com/midnightdodger">Check out our GitHub!</a></h2>
+        <h2>Wanna support us? <a href="https://ko-fi.com/midnightdodger0">You can donate here</a></h2>
+        <hr>
+        <p>We're excited to see new users interested in our platform, when this is ready the logo on Core for the service will change and there will be a blog post</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='settings.js') }}"></script>
+</body>
+</html>

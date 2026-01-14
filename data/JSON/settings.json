@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Identity",
+    "img": "static/settings/identity.svg",
+    "href": "/settings/identity",
+    "desc": "Username, profile picture, display names"
+  },
+  {
+    "name": "Themes",
+    "img": "static/settings/themes.svg",
+    "href": "/settings/themes",
+    "desc": "Themes for every Lambda service"
+  },
+  {
+    "name": "Accessibility",
+    "img": "static/settings/accessibility.svg",
+    "href": "/settings/accessibility",
+    "desc": "Make your experience easier"
+  },
+  {
+    "name": "Services",
+    "img": "static/settings/service.svg",
+    "href": "/settings/services",
+    "desc": "Control your services"
+  },
+  {
+    "name": "Security",
+    "img": "static/settings/security.svg",
+    "href": "/settings/security",
+    "desc": "Making sure you're safe"
+  },
+  {
+    "name": "Wellbeing",
+    "img": "static/settings/wellbeing.svg",
+    "href": "/settings/wellbeing",
+    "desc": "Keep a healthy balance"
+  },
+  {
+    "name": "Privacy",
+    "img": "static/settings/privacy.svg",
+    "href": "/settings/privacy",
+    "desc": "Protect your data"
+  },
+  {
+    "name": "Session",
+    "img": "static/settings/sessions.svg",
+    "href": "/settings/session",
+    "desc": "Manage who is logged in"
+  },
+  {
+    "name": "Advanced",
+    "img": "static/settings/advanced.svg",
+    "href": "/settings/advanced",
+    "desc": "Mostly beta concepts"
+  }
+]

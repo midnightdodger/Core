@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrame</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Themes.css') }}">
+    <style>
+        html, body{
+            display: flex;
+            flex-wrap: wrap;
+            background-color: transparent;
+            height: fit-content;
+        }
+        .form input{
+            width: 256px;
+        }
+        .setting{
+            width: fit-content;
+            margin: 8px;
+        }
+        .check *{
+            margin: 0;
+        }
+        .check input{
+           position: relative;
+           left: 50%;
+        }
+        .check{
+            display: flex;
+        }
+        #checks, #labels{
+            display: flex;
+            flex-direction: column;
+        }
+        #checks *{
+            margin-top: 7px;
+        }
+        #settings-close{
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button id="settings-close" class="glass">Close</button>
+    <div class="water panel setting form">
+        <label for="password">Password</label>
+        <input placeholder="Current password" type="text" class="glass glow" name="password">
+        <input placeholder="New password" type="text" class="glass glow">
+    </div>
+    <div class="water panel setting">
+        <label>2FA</label>
+        <div class="check">
+            <div id="labels">
+                <label for="phone">Phone</label>
+                <label for="email">Email</label>
+                <label for="auth">Codes</label>
+                <label for="glyph">Glyph</label>
+            </div>
+            <div id="checks">
+                <input type="checkbox" name="phone">
+                <input type="checkbox" name="Email">        
+                <input type="checkbox" name="auth">
+                <input type="checkbox" name="glyph">
+            </div>
+        </div>
+    </div>
+    <div class="water panel setting form">
+        <label for="Link">Connect</label>
+        <input placeholder="Email" type="text" class="glass glow" name="Link">
+        <input placeholder="Phone" type="text" class="glass glow">
+    </div>
+    <div class="water panel setting form">
+        <label for="que">Security questions</label>
+        <input placeholder="Question" type="text" class="glass glow" name="que">
+        <input placeholder="Answer" type="text" class="glass glow">
+        <p>+</p>
+    </div>
+    
+    <script src="{{ url_for('static', filename='settings.js') }}"></script>
+</body>
+</html>
